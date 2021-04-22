@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct MycoRecorderApp: App {
+struct MycoRecorderApp: App
+{
+    @StateObject private var data = ViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(data.PopulateTestData())
         }
     }
 }

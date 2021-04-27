@@ -9,40 +9,49 @@ import SwiftUI
 
 struct ContentView: View
 {
-    @EnvironmentObject var model: ViewModel
-
+    // Warning warning
+    var model = ViewModel()
+    @State var collections: [[RecordViewModel]]
+    @State var dates: [Date]
    
     var body: some View
     {
         NavigationView
         {
-            VStack(alignment: .center)
+            VStack
             {
-                Text("Days").padding().font(.title).foregroundColor(.primary)
                 List
                 {
-                    ForEach(model.Collections.keys.sorted(by: >), id: \.self)
+                    ForEach(0..<collections.count)
                     {
-                        date in
-                        NavigationLink(destination: DayView().environmentObject(model.GetDayViewModel(date: date)))
+                        i in
+                        let dateString = model.FormatDateAsString(date: collections[i][0].CollectionDate)
+                        NavigationLink(destination: DayView(
+                                        records: $collections[i],
+                                        date: dateString))
                         {
-                            Text(model.DateAsString(date: date))
+                            Text(dateString)
                         }
                     }
-
                 }
-                Spacer()
-                Button("View Day"){}
-                Button("Filter"){}
-                
             }
+            .navigationBarTitle("Days")
+            .navigationBarItems(trailing:
+                HStack
+                {
+                    Button("Filter"){}
+                    Button("Settings"){}
+                    
+                })
         }
-        .navigationTitle("Days")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environmentObject(ViewModel().PopulateTestData())
+struct ContentView_Previews: PreviewProvider
+{
+    @State static var model = ViewModel().PopulateTestData()
+    static var previews: some View
+    {
+        ContentView(collections: model.Collections, dates: model.Dates)
     }
 }

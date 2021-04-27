@@ -9,54 +9,38 @@ import SwiftUI
 
 struct RecordView: View
 {
-    @EnvironmentObject var record: Record
+    @Binding var record: RecordViewModel
+
     var body: some View
     {
-        VStack
+        ScrollView(.vertical)
         {
-            HStack
+            VStack
             {
-                Text("Name")
-                Text(record.Name)
-            }
-            HStack
-            {
-                Text("Coordinates")
-                Text(record.Coordinates)
-            }
-            HStack
-            {
-                Text("Location")
-                Text(record.Location)
-            }
-            HStack
-            {
-                Text("Cap")
-                Text(record.Cap)
-            }
-            HStack
-            {
-                Text("Gills")
-                Text(record.Gills)
-            }
-            HStack
-            {
-                Text("Pores")
-                Text(record.Pores)
-            }
-            HStack
-            {
-                Text("Stem")
-                Text(record.Stem)
+                RecordItemView(label: "Name", text: $record.Name)
+                RecordItemView(label: "Coordinates",text: $record.Coordinates)
+                RecordItemView(label: "Location", text: $record.Location)
+                RecordItemView(label: "Cap", text: $record.Cap)
+                RecordItemView(label: "Gills", text: $record.Gills)
+                RecordItemView(label: "Pores", text: $record.Pores)
+                RecordItemView(label: "Stem", text: $record.Stem)
+                RecordItemView(label: "Smell", text: $record.Smell)
+                RecordItemView(label: "Taste", text: $record.Taste)
+                Spacer()
             }
         }
+        .navigationBarTitle(" ", displayMode: .inline)
+        .padding(4)
+        .background(Color(red: 0.8, green: 0.8, blue: 0.8))
+        .navigationBarItems(trailing: Button("Delete"){})
     }
 }
 
 struct RecordView_Previews: PreviewProvider
 {
+    @State static var record = RecordViewModel()
     static var previews: some View
     {
-        RecordView()
+        RecordView(record: $record)
     }
 }

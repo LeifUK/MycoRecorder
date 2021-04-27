@@ -8,21 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		ED52B599262D802A00F04EAB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52B598262D802A00F04EAB /* ViewModel.swift */; };
-		ED52B59B262DAE6400F04EAB /* DayRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52B59A262DAE6400F04EAB /* DayRow.swift */; };
 		ED52B59D262DB78600F04EAB /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52B59C262DB78600F04EAB /* DayView.swift */; };
 		ED52B59F262DD01D00F04EAB /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED52B59E262DD01D00F04EAB /* DayViewModel.swift */; };
 		ED635388262855E000B07DC8 /* MycoRecorderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED635387262855E000B07DC8 /* MycoRecorderApp.swift */; };
 		ED63538A262855E000B07DC8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED635389262855E000B07DC8 /* ContentView.swift */; };
 		ED63538C262855F900B07DC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63538B262855F900B07DC8 /* Assets.xcassets */; };
 		ED63538F262855FA00B07DC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63538E262855FA00B07DC8 /* Preview Assets.xcassets */; };
+		ED73E65626340A3C0084BE79 /* RecordItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED73E65526340A3C0084BE79 /* RecordItemView.swift */; };
+		ED73E658263597060084BE79 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED73E657263597050084BE79 /* RecordViewModel.swift */; };
 		ED93BA682628BB4E004F2C16 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93BA672628BB4E004F2C16 /* Record.swift */; };
 		EDD661D12629932D00134F94 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD661D02629932D00134F94 /* RecordView.swift */; };
-		EDD661D32629936700134F94 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD661D22629936700134F94 /* CollectionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED52B598262D802A00F04EAB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		ED52B59A262DAE6400F04EAB /* DayRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRow.swift; sourceTree = "<group>"; };
 		ED52B59C262DB78600F04EAB /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		ED52B59E262DD01D00F04EAB /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
 		ED635384262855E000B07DC8 /* MycoRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MycoRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,9 +30,10 @@
 		ED63538B262855F900B07DC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED63538E262855FA00B07DC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ED635390262855FA00B07DC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED73E65526340A3C0084BE79 /* RecordItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordItemView.swift; sourceTree = "<group>"; };
+		ED73E657263597050084BE79 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		ED93BA672628BB4E004F2C16 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		EDD661D02629932D00134F94 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		EDD661D22629936700134F94 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				ED635389262855E000B07DC8 /* ContentView.swift */,
-				EDD661D02629932D00134F94 /* RecordView.swift */,
-				EDD661D22629936700134F94 /* CollectionsView.swift */,
-				ED52B59A262DAE6400F04EAB /* DayRow.swift */,
 				ED52B59C262DB78600F04EAB /* DayView.swift */,
+				ED73E65526340A3C0084BE79 /* RecordItemView.swift */,
+				EDD661D02629932D00134F94 /* RecordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -102,6 +101,7 @@
 				ED93BA672628BB4E004F2C16 /* Record.swift */,
 				ED52B598262D802A00F04EAB /* ViewModel.swift */,
 				ED52B59E262DD01D00F04EAB /* DayViewModel.swift */,
+				ED73E657263597050084BE79 /* RecordViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,11 +177,11 @@
 			files = (
 				ED52B599262D802A00F04EAB /* ViewModel.swift in Sources */,
 				ED63538A262855E000B07DC8 /* ContentView.swift in Sources */,
+				ED73E658263597060084BE79 /* RecordViewModel.swift in Sources */,
 				ED93BA682628BB4E004F2C16 /* Record.swift in Sources */,
-				EDD661D32629936700134F94 /* CollectionsView.swift in Sources */,
+				ED73E65626340A3C0084BE79 /* RecordItemView.swift in Sources */,
 				ED52B59D262DB78600F04EAB /* DayView.swift in Sources */,
 				ED635388262855E000B07DC8 /* MycoRecorderApp.swift in Sources */,
-				ED52B59B262DAE6400F04EAB /* DayRow.swift in Sources */,
 				ED52B59F262DD01D00F04EAB /* DayViewModel.swift in Sources */,
 				EDD661D12629932D00134F94 /* RecordView.swift in Sources */,
 			);

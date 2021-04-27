@@ -9,43 +9,42 @@ import SwiftUI
 
 struct DayView: View
 {
-    @EnvironmentObject var model: DayViewModel
-
+    @Binding var records: Array<RecordViewModel>
+    @State var date: String
+    
     var body: some View
     {
-        NavigationView
+        VStack(alignment: .leading)
         {
-            VStack(alignment: .center)
+            List
             {
-                List
+                ForEach(0..<records.count)
                 {
-                    ForEach(model.records, id: \.Id)
+                    i in
+                    NavigationLink(destination: RecordView(record: $records[i]))
                     {
-                        record in
-                        NavigationLink(destination: RecordView().environmentObject(record))
+                        HStack
                         {
-                            HStack
-                            {
-                                Text(record.Name)
-                                Text(record.Location)
-                            }
+                            Text(records[i].Name)
+                            Text(records[i].Location)
                         }
                     }
+                    .padding(0)
                 }
-                Spacer()
-                Button("View Day"){}
-                Button("Filter"){}
-                
             }
         }
-        .navigationTitle(model.dateString)
+        .navigationBarTitle(date)
+        .navigationBarItems(trailing: Button("Add Record"){})
     }
 }
 
 struct DayView_Previews: PreviewProvider
 {
+    @State static var records = Array<RecordViewModel>()
+    @State static var date: String = "March 1 2000"
+
     static var previews: some View
     {
-        DayView()
+        DayView(records: $records, date: date)
     }
 }

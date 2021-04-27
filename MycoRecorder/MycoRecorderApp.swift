@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct MycoRecorderApp: App
 {
-    @StateObject private var data = ViewModel()
+    @State private var model = ViewModel().PopulateTestData()
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView().environmentObject(data.PopulateTestData())
+    var body: some Scene
+    {
+        WindowGroup
+        {
+            ContentView(collections: model.Collections, dates: model.Dates)
         }
     }
 }

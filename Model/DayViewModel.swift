@@ -16,5 +16,5 @@ class DayViewModel: ObservableObject
     
     var dateString: String = ""
     var date: Date = Date()
-    var records: Array<Record> = []
+    var records: Array<RecordViewModel> = []
 }

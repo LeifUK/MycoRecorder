@@ -9,7 +9,9 @@ import Foundation
 
 final class DataStore: ObservableObject
 {
-    var Collections: [RecordStore] = []
+    // Warning warning
+    var record: Record = Record()
+    @Published var Collections: [RecordStore] = []
     let dateFormat = DateFormat()
     
     func PopulateTestData() -> DataStore

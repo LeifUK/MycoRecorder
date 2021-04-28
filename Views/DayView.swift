@@ -10,50 +10,69 @@ import SwiftUI
 struct DayView: View
 {
     @ObservedObject var recordStore: RecordStore
-    @State var addItem = false
+    @State var showEditRecordView = false
+    @State var record: Record = Record()
     
     var body: some View
     {
-        VStack(alignment: .leading)
+        if (!showEditRecordView)
         {
-            List
+            VStack(alignment: .leading)
             {
-                ForEach(0..<recordStore.records.count)
+                List
                 {
-                    i in
-                    NavigationLink(destination: RecordView(record: $recordStore.records[i]))
+                    ForEach(0..<recordStore.records.count, id: \.self)
                     {
-                        HStack
+                        i in
+                        NavigationLink(destination: RecordView(record: $recordStore.records[i]))
                         {
-                            Text(recordStore.records[i].Name)
-                            Text(recordStore.records[i].Location)
+                            HStack
+                            {
+                                Text(recordStore.records[i].Name)
+                                Text(recordStore.records[i].Location)
+                            }
                         }
+                        .padding(0)
                     }
-                    .padding(0)
                 }
             }
-        }
-        .navigationBarTitle(recordStore.dateString)
-        .navigationBarItems(trailing: Button("Add")
-        {
-            addItem.toggle()
-        })
-        .sheet(isPresented: $addItem)
-        {
-            Button(action:
+            .navigationBarHidden(false)
+            .navigationBarTitle(recordStore.dateString)
+            .navigationBarItems(trailing: Button("Add")
             {
-                var record = Record()
+                record = Record()
                 record.CollectionDate = recordStore.date
-                self.recordStore.records.append(record)
-                addItem.toggle()
-            }, label: {Text("Add")})
+                showEditRecordView = true
+            })
+        }
+        else
+        {
+            EditRecordView(
+                actionOnOK:
+                {
+                    record.CollectionDate = recordStore.date
+                    if (!recordStore.records.contains(record))
+                    {
+                        recordStore.records.append(record)
+                    }
+                    // Warning warning => clumsy
+                    record = Record()
+                    showEditRecordView.toggle()
+                },
+                actionOnCancel:
+                {
+                    showEditRecordView.toggle()
+                },
+                record: $record)
+            .navigationBarHidden(true)
         }
     }
 }
 
 struct DayView_Previews: PreviewProvider
 {
-    @StateObject static var recordStore = RecordStore(records: [Record](), date: Date(), dateString: "10 March 2020")
+    static let model = DataStore().PopulateTestData()
+    @StateObject static var recordStore: RecordStore = model.Collections[0]
 
     static var previews: some View
     {

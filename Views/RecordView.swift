@@ -17,16 +17,16 @@ struct RecordView: View
         {
             VStack
             {
-                RecordItemView(label: "Name", text: $record.Name)
-                RecordItemView(label: "Coordinates",text: $record.Coordinates)
-                RecordItemView(label: "Location", text: $record.Location)
-                RecordItemView(label: "Cap", text: $record.Cap)
-                RecordItemView(label: "Gills", text: $record.Gills)
-                RecordItemView(label: "Pores", text: $record.Pores)
-                RecordItemView(label: "Stem", text: $record.Stem)
-                RecordItemView(label: "Smell", text: $record.Smell)
-                RecordItemView(label: "Taste", text: $record.Taste)
-                Spacer()
+                RecordDateItem(label: "Date", date: $record.CollectionDate)
+                RecordTextItem(label: "Name", text: $record.Name)
+                RecordTextItem(label: "Coordinates",text: $record.Coordinates)
+                RecordTextItem(label: "Location", text: $record.Location)
+                RecordTextItem(label: "Cap", text: $record.Cap)
+                RecordTextItem(label: "Gills", text: $record.Gills)
+                RecordTextItem(label: "Pores", text: $record.Pores)
+                RecordTextItem(label: "Stem", text: $record.Stem)
+                RecordTextItem(label: "Smell", text: $record.Smell)
+                RecordTextItem(label: "Taste", text: $record.Taste)
             }
         }
         .navigationBarTitle(" ", displayMode: .inline)

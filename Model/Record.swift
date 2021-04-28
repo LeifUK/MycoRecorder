@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Record: Identifiable
+struct Record: Identifiable, Equatable
 {
     let id = UUID()
     var CollectionDate: Date = Date()

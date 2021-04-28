@@ -27,7 +27,7 @@ extension View
     }
 }
 
-struct RecordItemView: View
+struct RecordTextItem: View
 {
     var label: String
     @Binding var text: String
@@ -69,6 +69,6 @@ struct RecordItemView_Previews: PreviewProvider
     @State static var test: String = "Test"
     static var previews: some View
     {
-        RecordItemView(label: "demo", text: $test)
+        RecordTextItem(label: "demo", text: $test)
     }
 }

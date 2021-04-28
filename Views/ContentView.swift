@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View
 {
-    // Warning warning
-    var model = ViewModel()
-    @State var collections: [[RecordViewModel]]
-    @State var dates: [Date]
-   
+    //@State var collections: [[Record]]
+    @State var collections: [RecordStore]
+    //@State var dates: [Date]
+    
+    let dateFormatter = DateFormat()
+
     var body: some View
     {
         NavigationView
@@ -25,12 +26,10 @@ struct ContentView: View
                     ForEach(0..<collections.count)
                     {
                         i in
-                        let dateString = model.FormatDateAsString(date: collections[i][0].CollectionDate)
                         NavigationLink(destination: DayView(
-                                        records: $collections[i],
-                                        date: dateString))
+                                        recordStore: collections[i]))
                         {
-                            Text(dateString)
+                            Text(collections[i].dateString)
                         }
                     }
                 }
@@ -41,7 +40,13 @@ struct ContentView: View
                 {
                     Button("Filter"){}
                     Button("Settings"){}
-                    
+                    Button("Add")
+                    {
+                        var record = Record()
+                        record.Name = "Test"
+                        record.CollectionDate = collections[0].date
+                        collections[0].records.append(record)
+                    }
                 })
         }
     }
@@ -49,9 +54,9 @@ struct ContentView: View
 
 struct ContentView_Previews: PreviewProvider
 {
-    @State static var model = ViewModel().PopulateTestData()
+    @State static var model = DataStore().PopulateTestData()
     static var previews: some View
     {
-        ContentView(collections: model.Collections, dates: model.Dates)
+        ContentView(collections: model.Collections)
     }
 }

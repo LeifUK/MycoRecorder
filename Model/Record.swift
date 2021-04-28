@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Record.swift
 //  MycoRecorder
 //
 //  Created by Leif Goodwin on 15/04/2021.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Record : ObservableObject, Encodable, Identifiable
+struct Record: Identifiable
 {
-    var Id: Int = 0
+    let id = UUID()
     var CollectionDate: Date = Date()
     var Name: String = ""
     var Location: String = ""

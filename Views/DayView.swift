@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DayView: View
 {
-    @Binding var records: Array<RecordViewModel>
-    @State var date: String
+    @ObservedObject var recordStore: RecordStore
+    @State var addItem = false
     
     var body: some View
     {
@@ -18,33 +18,45 @@ struct DayView: View
         {
             List
             {
-                ForEach(0..<records.count)
+                ForEach(0..<recordStore.records.count)
                 {
                     i in
-                    NavigationLink(destination: RecordView(record: $records[i]))
+                    NavigationLink(destination: RecordView(record: $recordStore.records[i]))
                     {
                         HStack
                         {
-                            Text(records[i].Name)
-                            Text(records[i].Location)
+                            Text(recordStore.records[i].Name)
+                            Text(recordStore.records[i].Location)
                         }
                     }
                     .padding(0)
                 }
             }
         }
-        .navigationBarTitle(date)
-        .navigationBarItems(trailing: Button("Add Record"){})
+        .navigationBarTitle(recordStore.dateString)
+        .navigationBarItems(trailing: Button("Add")
+        {
+            addItem.toggle()
+        })
+        .sheet(isPresented: $addItem)
+        {
+            Button(action:
+            {
+                var record = Record()
+                record.CollectionDate = recordStore.date
+                self.recordStore.records.append(record)
+                addItem.toggle()
+            }, label: {Text("Add")})
+        }
     }
 }
 
 struct DayView_Previews: PreviewProvider
 {
-    @State static var records = Array<RecordViewModel>()
-    @State static var date: String = "March 1 2000"
+    @StateObject static var recordStore = RecordStore(records: [Record](), date: Date(), dateString: "10 March 2020")
 
     static var previews: some View
     {
-        DayView(records: $records, date: date)
+        DayView(recordStore: recordStore)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordView: View
 {
-    @Binding var record: RecordViewModel
+    @Binding var record: Record
 
     var body: some View
     {
@@ -38,7 +38,7 @@ struct RecordView: View
 
 struct RecordView_Previews: PreviewProvider
 {
-    @State static var record = RecordViewModel()
+    @State static var record = Record()
     static var previews: some View
     {
         RecordView(record: $record)

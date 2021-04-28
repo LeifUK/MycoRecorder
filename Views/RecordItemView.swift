@@ -46,21 +46,22 @@ struct RecordItemView: View
                 .foregroundColor(Color.white)
                 .cornerRadius(10, corners: [.topLeft, .topRight])
 
-                TextEditor(text: $text)
-                    .foregroundColor(Color.black)
-                    .padding(0)
-                     .frame(
-                        minWidth: 0,
-                        maxWidth: .infinity,
-                        minHeight: 150,
-                        maxHeight: 150,
-                        alignment: .top)
-                    .padding(0)
-                     .font(.custom("Arial", size: 24))
-                    .offset(y: -8)
-                    .padding(.bottom, -10)
+            TextEditor(text: $text)
+                .foregroundColor(Color.black)
+                .padding(0)
+                 .frame(
+                    minWidth: 0,
+                    maxWidth: .infinity,
+                    minHeight: 150,
+                    maxHeight: 150,
+                    alignment: .top)
+                .padding(0)
+                .font(.custom("Arial", size: 24))
+                .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                .offset(y: -8)
+                .padding(.bottom, -10)
         }
-    }
+     }
 }
 
 struct RecordItemView_Previews: PreviewProvider

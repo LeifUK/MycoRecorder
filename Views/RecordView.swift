@@ -10,6 +10,7 @@ import SwiftUI
 struct RecordView: View
 {
     @Binding var record: Record
+    @State var readOnly: Bool
 
     var body: some View
     {
@@ -17,16 +18,16 @@ struct RecordView: View
         {
             VStack
             {
-                RecordDateItem(label: "Date", date: $record.CollectionDate)
-                RecordTextItem(label: "Name", text: $record.Name)
-                RecordTextItem(label: "Coordinates",text: $record.Coordinates)
-                RecordTextItem(label: "Location", text: $record.Location)
-                RecordTextItem(label: "Cap", text: $record.Cap)
-                RecordTextItem(label: "Gills", text: $record.Gills)
-                RecordTextItem(label: "Pores", text: $record.Pores)
-                RecordTextItem(label: "Stem", text: $record.Stem)
-                RecordTextItem(label: "Smell", text: $record.Smell)
-                RecordTextItem(label: "Taste", text: $record.Taste)
+                RecordDateItem(label: "Date", date: $record.collectionDate, readOnly: readOnly)
+                RecordTextItem(label: "Name", text: $record.name)
+                RecordTextItem(label: "Coordinates",text: $record.coordinates)
+                RecordTextItem(label: "Location", text: $record.location)
+                RecordTextItem(label: "Cap", text: $record.cap)
+                RecordTextItem(label: "Gills", text: $record.gills)
+                RecordTextItem(label: "Pores", text: $record.pores)
+                RecordTextItem(label: "Stem", text: $record.stem)
+                RecordTextItem(label: "Smell", text: $record.smell)
+                RecordTextItem(label: "Taste", text: $record.taste)
             }
         }
         .navigationBarTitle(" ", displayMode: .inline)
@@ -41,6 +42,6 @@ struct RecordView_Previews: PreviewProvider
     @State static var record = Record()
     static var previews: some View
     {
-        RecordView(record: $record)
+        RecordView(record: $record, readOnly: false)
     }
 }

@@ -11,6 +11,7 @@ struct RecordDateItem: View
 {
     var label: String
     @Binding var date: Date
+    @State var readOnly: Bool
     
     var body: some View
     {
@@ -40,7 +41,7 @@ struct RecordDateItem: View
                 .offset(y: -8)
                 .padding(.bottom, -10)
                 .accentColor(Color.black)
-                .disabled(false)
+                .disabled(readOnly)
          }
      }
 }
@@ -50,6 +51,6 @@ struct RecordDateItem_Previews: PreviewProvider
     @State static var date: Date = Date()
     static var previews: some View
     {
-        RecordDateItem(label: "Date", date: $date)
+        RecordDateItem(label: "Date", date: $date, readOnly: false)
     }
 }

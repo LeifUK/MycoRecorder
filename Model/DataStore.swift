@@ -9,8 +9,6 @@ import Foundation
 
 final class DataStore: ObservableObject
 {
-    // Warning warning
-    var record: Record = Record()
     @Published var Collections: [RecordStore] = []
     let dateFormat = DateFormat()
     
@@ -24,26 +22,26 @@ final class DataStore: ObservableObject
         var records = Array<Record>()
        
         var record = Record()
-        record.CollectionDate = date
-        record.Name = "Amanita spissa"
+        record.collectionDate = date
+        record.name = "Amanita spissa"
         records.append(record)
         
         record = Record()
-        record.CollectionDate = date
-        record.Name = "Amanita muscaria"
-        record.Location = "Wisley"
+        record.collectionDate = date
+        record.name = "Amanita muscaria"
+        record.location = "Wisley"
         records.append(record)
         
         record = Record()
-        record.CollectionDate = date
-        record.Name = "Ganoderma australe"
-        record.Location = "Wisley"
+        record.collectionDate = date
+        record.name = "Ganoderma australe"
+        record.location = "Wisley"
         records.append(record)
         
         record = Record()
-        record.CollectionDate = date
-        record.Name = "Boletus edulis"
-        record.Location = "Stoner Park"
+        record.collectionDate = date
+        record.name = "Boletus edulis"
+        record.location = "Stoner Park"
         records.append(record)
         
         // Assign here as an array is a value type!
@@ -59,15 +57,15 @@ final class DataStore: ObservableObject
         records = Array<Record>()
      
         record = Record()
-        record.CollectionDate = date
-        record.Name = "Peniophora quercina"
-        record.Location = "Four Marks"
+        record.collectionDate = date
+        record.name = "Peniophora quercina"
+        record.location = "Four Marks"
         records.append(record)
         
         record = Record()
-        record.CollectionDate = date
-        record.Name = "Stereum hirsutum"
-        record.Location = "Medstead"
+        record.collectionDate = date
+        record.name = "Stereum hirsutum"
+        record.location = "Medstead"
         records.append(record)
 
         Collections.append(
@@ -78,4 +76,49 @@ final class DataStore: ObservableObject
 
         return self
     }
-}
+    
+    func AddRecord(record: Record) -> Void
+    {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents(
+            [.year,.month,.day],
+            from: record.collectionDate)
+        let year = components.year
+        let month = components.month
+        let day = components.day
+
+        var found = false
+        var index = 0
+        for i in 0..<self.Collections.indices.count
+        {
+            components = calendar.dateComponents(
+                [.year,.month,.day],
+                from: self.Collections[i].date)
+            if (
+                   (components.year == year) &&
+                   (components.month == month) &&
+                   (components.day == day)
+               )
+            {
+                found = true
+                self.Collections[i].records.append(record)
+                break
+            }
+            else
+            {
+                if (self.Collections[i].date < record.collectionDate)
+                {
+                    index = i + 1
+                }
+            }
+        }
+        if (!found)
+        {
+            let recordStore = RecordStore(
+                records: [Record](),
+                date: record.collectionDate,
+                dateString: dateFormat.FormatDateAsString(date: record.collectionDate))
+            self.Collections.insert(recordStore, at: index)
+            self.Collections[index].records.append(record)
+        }
+    }}

@@ -10,19 +10,22 @@ import Foundation
 struct Record: Identifiable, Equatable
 {
     let id = UUID()
-    var CollectionDate: Date = Date()
-    var Name: String = ""
-    var Location: String = ""
-    var Coordinates: String = ""
-    var Cap: String = ""
-    var Gills: String = ""
-    var Stem: String = ""
-    var Pores: String = ""
-    var Spines: String = ""
-    var FruitingBody: String = ""
-    var Substrate: String = ""
-    var Associations: String = ""
-    var Smell: String = ""
-    var Taste: String = ""
-    var Flesh: String = ""
+    var collectionDate: Date = Date()
+    var collector: String = ""
+    var identifier: String = ""
+    var confirmer: String = ""
+    var name: String = ""
+    var location: String = ""
+    var coordinates: String = ""
+    var cap: String = ""
+    var gills: String = ""
+    var stem: String = ""
+    var pores: String = ""
+    var spines: String = ""
+    var fruitingBody: String = ""
+    var substrate: String = ""
+    var associations: String = ""
+    var smell: String = ""
+    var taste: String = ""
+    var flesh: String = ""
 }

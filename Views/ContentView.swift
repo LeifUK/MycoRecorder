@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ContentView: View
 {
+    @State var record = Record()
     @StateObject var dataStore: DataStore
-    let dateFormatter = DateFormat()
     @State var showEditRecordView = false
-    @State var record: Record = Record()
-
+    
     var body: some View
     {
         NavigationView
@@ -35,15 +34,11 @@ struct ContentView: View
                         }
                     }
                 }
+                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.large)
                 .navigationBarHidden(false)
                 .navigationBarTitle("Collections")
                 .navigationBarItems(
-                    leading:
-                        HStack
-                        {
-                            Button("Filter"){}
-                            Button("Settings"){}
-                        },
+                    leading:  Button("Settings"){},
                     trailing: Button("Add") { showEditRecordView = true })
             }
             else
@@ -51,49 +46,7 @@ struct ContentView: View
                 EditRecordView(
                     actionOnOK:
                     {
-                        let calendar = Calendar.current
-                        var components = calendar.dateComponents(
-                            [.year,.month,.day],
-                            from: record.CollectionDate)
-                        let year = components.year
-                        let month = components.month
-                        let day = components.day
-
-                        var found = false
-                        var index = 0
-                        for i in 0..<dataStore.Collections.indices.count
-                        {
-                            components = calendar.dateComponents(
-                                [.year,.month,.day],
-                                from: dataStore.Collections[i].date)
-                            if (
-                                   (components.year == year) &&
-                                   (components.month == month) &&
-                                   (components.day == day)
-                               )
-                            {
-                                found = true
-                                 dataStore.Collections[i].records.append(record)
-                                break
-                            }
-                            else
-                            {
-                                if (dataStore.Collections[i].date < record.CollectionDate)
-                                {
-                                    index = i + 1
-                                }
-                            }
-                        }
-                        if (!found)
-                        {
-                            let recordStore = RecordStore(
-                                records: [Record](),
-                                date: record.CollectionDate,
-                                dateString: dateFormatter.FormatDateAsString(date: record.CollectionDate))
-                            dataStore.Collections.insert(recordStore, at: index)
-                            dataStore.Collections[index].records.append(record)
-                        }
-                        // Warning warning
+                        dataStore.AddRecord(record: record)
                         record = Record()
                         showEditRecordView.toggle()
                     },
@@ -101,8 +54,8 @@ struct ContentView: View
                     {
                         showEditRecordView.toggle()
                     },
-                    // Warning warning
-                    record: $record)
+                    record: $record,
+                    dateEditable: true)
                 .navigationBarHidden(true)
             }
         }

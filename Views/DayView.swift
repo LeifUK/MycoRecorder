@@ -15,56 +15,56 @@ struct DayView: View
     
     var body: some View
     {
-        if (!showEditRecordView)
+        VStack()
         {
-            VStack(alignment: .leading)
+            if (!showEditRecordView)
             {
-                List
+                VStack(alignment: .leading)
                 {
-                    ForEach(0..<recordStore.records.count, id: \.self)
+                    List
                     {
-                        i in
-                        NavigationLink(destination: RecordView(record: $recordStore.records[i]))
+                        ForEach(0..<recordStore.records.count, id: \.self)
                         {
-                            HStack
+                            i in
+                            NavigationLink(destination: RecordView(record: $recordStore.records[i], readOnly: true))
                             {
-                                Text(recordStore.records[i].Name)
-                                Text(recordStore.records[i].Location)
+                                HStack
+                                {
+                                    Text(recordStore.records[i].name)
+                                    Text(recordStore.records[i].location)
+                                }
                             }
+                            .padding(0)
                         }
-                        .padding(0)
                     }
                 }
-            }
-            .navigationBarHidden(false)
-            .navigationBarTitle(recordStore.dateString)
-            .navigationBarItems(trailing: Button("Add")
-            {
-                record = Record()
-                record.CollectionDate = recordStore.date
-                showEditRecordView = true
-            })
-        }
-        else
-        {
-            EditRecordView(
-                actionOnOK:
+                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+                .navigationBarHidden(false)
+                .navigationBarTitle(recordStore.dateString)
+                .navigationBarItems(trailing: Button("Add")
                 {
-                    record.CollectionDate = recordStore.date
-                    if (!recordStore.records.contains(record))
+                    record = Record()
+                    record.collectionDate = recordStore.date
+                    showEditRecordView = true
+                })
+            }
+            else
+            {
+                EditRecordView(
+                    actionOnOK:
                     {
                         recordStore.records.append(record)
-                    }
-                    // Warning warning => clumsy
-                    record = Record()
-                    showEditRecordView.toggle()
-                },
-                actionOnCancel:
-                {
-                    showEditRecordView.toggle()
-                },
-                record: $record)
-            .navigationBarHidden(true)
+                        record = Record()
+                        showEditRecordView.toggle()
+                    },
+                    actionOnCancel:
+                    {
+                        showEditRecordView.toggle()
+                    },
+                    record: $record,
+                    dateEditable: false)
+                .navigationBarHidden(true)
+            }
         }
     }
 }

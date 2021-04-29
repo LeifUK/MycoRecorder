@@ -12,13 +12,15 @@ struct EditRecordView: View
     var actionOnOK: () -> Void
     var actionOnCancel: () -> Void
     @Binding var record: Record
+    @State var dateEditable: Bool
     
     var body: some View
     {
         VStack
         {
-            HStack(spacing: 50)
+            HStack()
             {
+                Spacer()
                 Button(
                     action:
                     {
@@ -26,8 +28,9 @@ struct EditRecordView: View
                     },
                     label:
                     {
-                        Text("Add").font(.headline).padding()
+                        Text("Add").font(.title2).padding()
                     })
+                Spacer()
                 Button(
                     action:
                     {
@@ -35,13 +38,12 @@ struct EditRecordView: View
                     },
                     label:
                     {
-                        Text("Cancel").font(.headline).padding().foregroundColor(Color.red)
-                        
+                        Text("Cancel").font(.title2).padding().foregroundColor(Color.red)
                     })
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            Divider()
-            RecordView(record: $record)
+                Spacer()
+            }.frame(maxHeight: 40)
+            Divider().padding(0)
+            RecordView(record: $record, readOnly: !dateEditable)
         }
     }
 }
@@ -52,6 +54,6 @@ struct EditRecordView_Previews: PreviewProvider
     
     static var previews: some View
     {
-        EditRecordView(actionOnOK: {}, actionOnCancel: {}, record: $record)
+        EditRecordView(actionOnOK: {}, actionOnCancel: {}, record: $record, dateEditable: true)
     }
 }

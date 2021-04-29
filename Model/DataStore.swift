@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DataStore: ObservableObject
+final class DataStore: ObservableObject, ISerialiser
 {
     @Published var Collections: [RecordStore] = []
     let dateFormat = DateFormat()
@@ -121,4 +121,17 @@ final class DataStore: ObservableObject
             self.Collections.insert(recordStore, at: index)
             self.Collections[index].records.append(record)
         }
-    }}
+    }
+    
+    // ISerialiser
+    
+    func Load()
+    {
+        
+    }
+    
+    func Save()
+    {
+        print("DataStore.Save()")
+    }
+}

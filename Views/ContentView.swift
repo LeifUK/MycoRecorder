@@ -26,8 +26,10 @@ struct ContentView: View
                         ForEach(0..<dataStore.Collections.count)
                         {
                             i in
-                            NavigationLink(destination: DayView(
-                                            recordStore: dataStore.Collections[i]))
+                            NavigationLink(
+                                destination: DayView(
+                                    iSerialiser: dataStore,
+                                    recordStore: dataStore.Collections[i]))
                             {
                                 Text(dataStore.Collections[i].dateString)
                             }
@@ -48,6 +50,7 @@ struct ContentView: View
                     {
                         dataStore.AddRecord(record: record)
                         record = Record()
+                        dataStore.Save()
                         showEditRecordView.toggle()
                     },
                     actionOnCancel:

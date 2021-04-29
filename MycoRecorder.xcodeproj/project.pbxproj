@@ -20,6 +20,7 @@
 		EDF0C6A326395A4F00BAC7E4 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */; };
 		EDF0C6A52639B4A600BAC7E4 /* RecordDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A42639B4A600BAC7E4 /* RecordDateItem.swift */; };
 		EDF0C6A72639E88700BAC7E4 /* EditRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */; };
+		EDF0C6A9263A44A600BAC7E4 /* ISerialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 		EDF0C6A42639B4A600BAC7E4 /* RecordDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDateItem.swift; sourceTree = "<group>"; };
 		EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordView.swift; sourceTree = "<group>"; };
+		EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISerialiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				ED52B598262D802A00F04EAB /* DataStore.swift */,
 				EDF0C6A026390C1000BAC7E4 /* DateFormat.swift */,
 				EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */,
+				EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				EDF0C6A326395A4F00BAC7E4 /* RecordStore.swift in Sources */,
 				ED73E65626340A3C0084BE79 /* RecordTextItem.swift in Sources */,
 				ED52B59D262DB78600F04EAB /* DayView.swift in Sources */,
+				EDF0C6A9263A44A600BAC7E4 /* ISerialiser.swift in Sources */,
 				EDF0C6A52639B4A600BAC7E4 /* RecordDateItem.swift in Sources */,
 				ED635388262855E000B07DC8 /* MycoRecorderApp.swift in Sources */,
 				EDD661D12629932D00134F94 /* RecordView.swift in Sources */,

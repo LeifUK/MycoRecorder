@@ -9,10 +9,22 @@ import SwiftUI
 
 struct DayView: View
 {
+    var iSerialiser: ISerialiser
     @ObservedObject var recordStore: RecordStore
     @State var showEditRecordView = false
     @State var record: Record = Record()
     
+    init(iSerialiser: ISerialiser, recordStore: RecordStore)
+    {
+        self.iSerialiser = iSerialiser
+        self.recordStore = recordStore
+    }
+    
+    func Delete(at offsets: IndexSet)
+    {
+        recordStore.records.remove(atOffsets: offsets)
+    }
+
     var body: some View
     {
         VStack()
@@ -26,7 +38,10 @@ struct DayView: View
                         ForEach(0..<recordStore.records.count, id: \.self)
                         {
                             i in
-                            NavigationLink(destination: RecordView(record: $recordStore.records[i], readOnly: true))
+                            NavigationLink(destination: RecordView(
+                                record: $recordStore.records[i],
+                                readOnly: true,
+                                onDisappear: { iSerialiser.Save() }))
                             {
                                 HStack
                                 {
@@ -35,7 +50,7 @@ struct DayView: View
                                 }
                             }
                             .padding(0)
-                        }
+                        }.onDelete(perform: Delete)
                     }
                 }
                 .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
@@ -55,6 +70,7 @@ struct DayView: View
                     {
                         recordStore.records.append(record)
                         record = Record()
+                        iSerialiser.Save()
                         showEditRecordView.toggle()
                     },
                     actionOnCancel:
@@ -76,6 +92,6 @@ struct DayView_Previews: PreviewProvider
 
     static var previews: some View
     {
-        DayView(recordStore: recordStore)
+        DayView(iSerialiser: model, recordStore: recordStore)
     }
 }

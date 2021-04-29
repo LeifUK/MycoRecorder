@@ -43,7 +43,7 @@ struct EditRecordView: View
                 Spacer()
             }.frame(maxHeight: 40)
             Divider().padding(0)
-            RecordView(record: $record, readOnly: !dateEditable)
+            RecordView(record: $record, readOnly: !dateEditable, onDisappear: {})
         }
     }
 }

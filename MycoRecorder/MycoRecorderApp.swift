@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct MycoRecorderApp: App
 {
-    @StateObject private var dataStore = DataStore().PopulateTestData()
+     @StateObject private var dataStore = DataStore().DoLoad()
 
     var body: some Scene
     {

@@ -7,14 +7,36 @@
 
 import Foundation
 
-final class DataStore: ObservableObject, ISerialiser
+final class DataStore: ObservableObject, ISerialiser, Codable
 {
-    @Published var Collections: [RecordStore] = []
+    @Published var collections: [RecordStore] = []
     let dateFormat = DateFormat()
+        
+    private enum CodingKeys: CodingKey
+    {
+        case collections
+    }
+    
+    func encode(to encoder: Encoder) throws
+    {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(collections, forKey: .collections)
+    }
+    
+    init()
+    {
+        
+    }
+    
+    required init(from decoder: Decoder) throws
+    {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        collections = try container.decode([RecordStore].self, forKey: .collections)
+    }
     
     func PopulateTestData() -> DataStore
     {
-        Collections = [RecordStore]()
+        collections = [RecordStore]()
         
         // The first day
         
@@ -45,7 +67,7 @@ final class DataStore: ObservableObject, ISerialiser
         records.append(record)
         
         // Assign here as an array is a value type!
-        Collections.append(
+        collections.append(
             RecordStore(
                 records: records,
                 date: date,
@@ -68,7 +90,7 @@ final class DataStore: ObservableObject, ISerialiser
         record.location = "Medstead"
         records.append(record)
 
-        Collections.append(
+        collections.append(
             RecordStore(
                 records: records,
                 date: date,
@@ -89,11 +111,11 @@ final class DataStore: ObservableObject, ISerialiser
 
         var found = false
         var index = 0
-        for i in 0..<self.Collections.indices.count
+        for i in 0..<self.collections.indices.count
         {
             components = calendar.dateComponents(
                 [.year,.month,.day],
-                from: self.Collections[i].date)
+                from: self.collections[i].date)
             if (
                    (components.year == year) &&
                    (components.month == month) &&
@@ -101,12 +123,12 @@ final class DataStore: ObservableObject, ISerialiser
                )
             {
                 found = true
-                self.Collections[i].records.append(record)
+                self.collections[i].records.append(record)
                 break
             }
             else
             {
-                if (self.Collections[i].date < record.collectionDate)
+                if (self.collections[i].date < record.collectionDate)
                 {
                     index = i + 1
                 }
@@ -118,20 +140,59 @@ final class DataStore: ObservableObject, ISerialiser
                 records: [Record](),
                 date: record.collectionDate,
                 dateString: dateFormat.FormatDateAsString(date: record.collectionDate))
-            self.Collections.insert(recordStore, at: index)
-            self.Collections[index].records.append(record)
+            self.collections.insert(recordStore, at: index)
+            self.collections[index].records.append(record)
         }
     }
     
     // ISerialiser
     
-    func Load()
+    private func getDocumentsDirectory() -> URL
     {
-        
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
+    private func GetFilepath() -> URL
+    {
+        let pathDirectory = getDocumentsDirectory()
+        try? FileManager().createDirectory(at: pathDirectory, withIntermediateDirectories: true)
+        return pathDirectory.appendingPathComponent(Settings.dataFile + ".json")
+    }
+    
+    func DoLoad() -> DataStore
+    {
+        Load()
+        return self
+    }
+    
+    func Load()
+    {
+        let filePath = GetFilepath()
+        do
+        {
+            let data = try Data(contentsOf: filePath, options: .alwaysMapped)
+            let jsonDecoder = JSONDecoder()
+            let jsonData = try jsonDecoder.decode(DataStore.self, from: data)
+            collections = jsonData.collections
+        }
+        catch
+        {
+            // The file is invalid so just remove all data
+            collections = [RecordStore]()
+        }
+    }
+
     func Save()
     {
-        print("DataStore.Save()")
+        let data = try? JSONEncoder().encode(self)
+        let filePath = GetFilepath()
+        do
+        {
+            try data!.write(to: filePath)
+        }
+        catch
+        {
+            print("DataStore.Save() -> failed!")
+        }
     }
 }

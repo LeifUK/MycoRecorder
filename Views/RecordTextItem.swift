@@ -7,60 +7,39 @@
 
 import SwiftUI
 
-struct RoundedCorner: Shape
-{
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path
-    {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
-extension View
-{
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View
-    {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-}
-
 struct RecordTextItem: View
 {
     var label: String
     @Binding var text: String
+    var editorHeight: CGFloat
     
     var body: some View
     {
         VStack
         {
             Text(label)
-               .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 10)
                 .padding(.top, 4)
                 .padding(.bottom, 4)
-                .background(Color(red: 0.2, green: 0.2, blue: 1))
-                .foregroundColor(Color.white)
-                .cornerRadius(10, corners: [.topLeft, .topRight])
 
             TextEditor(text: $text)
                 .foregroundColor(Color.black)
-                .padding(0)
+                .padding(.leading, 2)
+                .padding(.trailing, 2)
+                .padding(.bottom, 2)
                  .frame(
                     minWidth: 0,
                     maxWidth: .infinity,
-                    minHeight: 150,
-                    maxHeight: 150,
+                    minHeight: editorHeight,
+                    maxHeight: editorHeight,
                     alignment: .top)
-                .padding(0)
-                .font(.custom("Arial", size: 24))
-                .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
                 .offset(y: -8)
                 .padding(.bottom, -10)
         }
+        .font(.custom("Arial", size: 20))
+        .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+        .cornerRadius(5, corners: [.allCorners])
      }
 }
 
@@ -69,6 +48,6 @@ struct RecordItemView_Previews: PreviewProvider
     @State static var test: String = "Test"
     static var previews: some View
     {
-        RecordTextItem(label: "demo", text: $test)
+        RecordTextItem(label: "demo", text: $test, editorHeight: 150)
     }
 }

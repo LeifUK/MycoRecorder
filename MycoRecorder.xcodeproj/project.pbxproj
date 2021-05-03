@@ -15,12 +15,18 @@
 		ED63538F262855FA00B07DC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED63538E262855FA00B07DC8 /* Preview Assets.xcassets */; };
 		ED73E65626340A3C0084BE79 /* RecordTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED73E65526340A3C0084BE79 /* RecordTextItem.swift */; };
 		ED93BA682628BB4E004F2C16 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93BA672628BB4E004F2C16 /* Record.swift */; };
+		EDB08C82263FCA6000A72953 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB08C81263FCA6000A72953 /* SettingsView.swift */; };
+		EDB08C84263FDAB400A72953 /* SettingsTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB08C83263FDAB400A72953 /* SettingsTextItem.swift */; };
+		EDB08C86264024CD00A72953 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB08C85264024CC00A72953 /* Settings.swift */; };
+		EDB08C882640452100A72953 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB08C872640452100A72953 /* StringExtensions.swift */; };
+		EDB08C8A2640458F00A72953 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB08C892640458F00A72953 /* ViewExtensions.swift */; };
 		EDD661D12629932D00134F94 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD661D02629932D00134F94 /* RecordView.swift */; };
 		EDF0C6A126390C1000BAC7E4 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A026390C1000BAC7E4 /* DateFormat.swift */; };
 		EDF0C6A326395A4F00BAC7E4 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */; };
 		EDF0C6A52639B4A600BAC7E4 /* RecordDateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A42639B4A600BAC7E4 /* RecordDateItem.swift */; };
 		EDF0C6A72639E88700BAC7E4 /* EditRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */; };
 		EDF0C6A9263A44A600BAC7E4 /* ISerialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */; };
+		EDF0C6AB263A6A8700BAC7E4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C6AA263A6A8600BAC7E4 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +40,18 @@
 		ED635390262855FA00B07DC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED73E65526340A3C0084BE79 /* RecordTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTextItem.swift; sourceTree = "<group>"; };
 		ED93BA672628BB4E004F2C16 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		EDB08C81263FCA6000A72953 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EDB08C83263FDAB400A72953 /* SettingsTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextItem.swift; sourceTree = "<group>"; };
+		EDB08C85264024CC00A72953 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		EDB08C872640452100A72953 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		EDB08C892640458F00A72953 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		EDD661D02629932D00134F94 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		EDF0C6A026390C1000BAC7E4 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 		EDF0C6A42639B4A600BAC7E4 /* RecordDateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDateItem.swift; sourceTree = "<group>"; };
 		EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordView.swift; sourceTree = "<group>"; };
 		EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISerialiser.swift; sourceTree = "<group>"; };
+		EDF0C6AA263A6A8600BAC7E4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +107,13 @@
 			children = (
 				ED635389262855E000B07DC8 /* ContentView.swift */,
 				ED52B59C262DB78600F04EAB /* DayView.swift */,
+				EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */,
 				EDF0C6A42639B4A600BAC7E4 /* RecordDateItem.swift */,
 				ED73E65526340A3C0084BE79 /* RecordTextItem.swift */,
 				EDD661D02629932D00134F94 /* RecordView.swift */,
-				EDF0C6A62639E88700BAC7E4 /* EditRecordView.swift */,
+				EDB08C83263FDAB400A72953 /* SettingsTextItem.swift */,
+				EDB08C81263FCA6000A72953 /* SettingsView.swift */,
+				EDB08C892640458F00A72953 /* ViewExtensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,8 +124,11 @@
 				ED93BA672628BB4E004F2C16 /* Record.swift */,
 				ED52B598262D802A00F04EAB /* DataStore.swift */,
 				EDF0C6A026390C1000BAC7E4 /* DateFormat.swift */,
-				EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */,
 				EDF0C6A8263A44A600BAC7E4 /* ISerialiser.swift */,
+				EDF0C6AA263A6A8600BAC7E4 /* LocationManager.swift */,
+				EDF0C6A226395A4F00BAC7E4 /* RecordStore.swift */,
+				EDB08C85264024CC00A72953 /* Settings.swift */,
+				EDB08C872640452100A72953 /* StringExtensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,15 +205,21 @@
 				ED52B599262D802A00F04EAB /* DataStore.swift in Sources */,
 				ED63538A262855E000B07DC8 /* ContentView.swift in Sources */,
 				EDF0C6A72639E88700BAC7E4 /* EditRecordView.swift in Sources */,
+				EDB08C84263FDAB400A72953 /* SettingsTextItem.swift in Sources */,
 				ED93BA682628BB4E004F2C16 /* Record.swift in Sources */,
 				EDF0C6A126390C1000BAC7E4 /* DateFormat.swift in Sources */,
 				EDF0C6A326395A4F00BAC7E4 /* RecordStore.swift in Sources */,
 				ED73E65626340A3C0084BE79 /* RecordTextItem.swift in Sources */,
+				EDB08C82263FCA6000A72953 /* SettingsView.swift in Sources */,
 				ED52B59D262DB78600F04EAB /* DayView.swift in Sources */,
+				EDB08C86264024CD00A72953 /* Settings.swift in Sources */,
 				EDF0C6A9263A44A600BAC7E4 /* ISerialiser.swift in Sources */,
 				EDF0C6A52639B4A600BAC7E4 /* RecordDateItem.swift in Sources */,
 				ED635388262855E000B07DC8 /* MycoRecorderApp.swift in Sources */,
+				EDB08C8A2640458F00A72953 /* ViewExtensions.swift in Sources */,
+				EDB08C882640452100A72953 /* StringExtensions.swift in Sources */,
 				EDD661D12629932D00134F94 /* RecordView.swift in Sources */,
+				EDF0C6AB263A6A8700BAC7E4 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

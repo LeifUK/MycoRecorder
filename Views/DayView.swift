@@ -45,8 +45,8 @@ struct DayView: View
                             {
                                 HStack
                                 {
-                                    Text(recordStore.records[i].name)
-                                    Text(recordStore.records[i].location)
+                                    Text(recordStore.records[i].name + ", " +
+                                        recordStore.records[i].location)
                                 }
                             }
                             .padding(0)
@@ -88,7 +88,7 @@ struct DayView: View
 struct DayView_Previews: PreviewProvider
 {
     static let model = DataStore().PopulateTestData()
-    @StateObject static var recordStore: RecordStore = model.Collections[0]
+    @StateObject static var recordStore: RecordStore = model.collections[0]
 
     static var previews: some View
     {

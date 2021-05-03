@@ -20,7 +20,6 @@ struct EditRecordView: View
         {
             HStack()
             {
-                Spacer()
                 Button(
                     action:
                     {
@@ -28,7 +27,7 @@ struct EditRecordView: View
                     },
                     label:
                     {
-                        Text("Add").font(.title2).padding()
+                        Text("Add").font(.headline).padding()
                     })
                 Spacer()
                 Button(
@@ -38,11 +37,9 @@ struct EditRecordView: View
                     },
                     label:
                     {
-                        Text("Cancel").font(.title2).padding().foregroundColor(Color.red)
+                        Text("Cancel").font(.headline).padding()
                     })
-                Spacer()
             }.frame(maxHeight: 40)
-            Divider().padding(0)
             RecordView(record: $record, readOnly: !dateEditable, onDisappear: {})
         }
     }

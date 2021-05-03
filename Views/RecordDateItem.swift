@@ -18,14 +18,13 @@ struct RecordDateItem: View
         VStack(alignment: .leading)
         {
             Text(label)
-               .font(.title)
+                .font(.custom("Arial", size: 20))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 10)
                 .padding(.top, 4)
                 .padding(.bottom, 4)
-                .background(Color(red: 0.2, green: 0.2, blue: 1))
-                .foregroundColor(Color.white)
-                .cornerRadius(10, corners: [.topLeft, .topRight])
+                .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+                .cornerRadius(5, corners: [.topLeft, .topRight])
 
             DatePicker("", selection: $date, displayedComponents: [.date])
                 .labelsHidden()
@@ -37,10 +36,10 @@ struct RecordDateItem: View
                     alignment: .leading)
                 .padding(0)
                 .background(Rectangle().fill(Color.white))
-                .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                .cornerRadius(5, corners: [.bottomLeft, .bottomRight])
                 .offset(y: -8)
                 .padding(.bottom, -10)
-                .accentColor(Color.black)
+                //.accentColor(Color.black)
                 .disabled(readOnly)
          }
      }

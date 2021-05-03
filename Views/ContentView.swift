@@ -7,31 +7,41 @@
 
 import SwiftUI
 
+enum CurrentView
+{
+    case Settings, AddRecord, Data
+}
+
 struct ContentView: View
 {
     @State var record = Record()
     @StateObject var dataStore: DataStore
     @State var showEditRecordView = false
+    @State var currentView = CurrentView.Data
+    @State var dataFile = "MycoRecorder"
+    @State var defaultCollector = "Joe Bloggs"
+    
+    var locationManager = LocationManager()
     
     var body: some View
     {
         NavigationView
         {
-            if (!showEditRecordView)
+            if (currentView == CurrentView.Data)
             {
                 VStack
                 {
                     List
                     {
-                        ForEach(0..<dataStore.Collections.count)
+                        ForEach(0..<dataStore.collections.count)
                         {
                             i in
                             NavigationLink(
                                 destination: DayView(
                                     iSerialiser: dataStore,
-                                    recordStore: dataStore.Collections[i]))
+                                    recordStore: dataStore.collections[i]))
                             {
-                                Text(dataStore.Collections[i].dateString)
+                                Text(dataStore.collections[i].dateString)
                             }
                         }
                     }
@@ -40,10 +50,24 @@ struct ContentView: View
                 .navigationBarHidden(false)
                 .navigationBarTitle("Collections")
                 .navigationBarItems(
-                    leading:  Button("Settings"){},
-                    trailing: Button("Add") { showEditRecordView = true })
+                    leading:  Button("Settings")
+                    {
+                        currentView = CurrentView.Settings
+                    },
+                    trailing: Button("Add")
+                    {
+                        locationManager.RequestLocation(locationCallback:
+                        {
+                            latitude,longitude in
+                            do
+                            {
+                                record.location = String(latitude) + ", " + String(longitude)
+                            }
+                        })
+                        currentView = CurrentView.AddRecord
+                    })
             }
-            else
+            else if (currentView == CurrentView.AddRecord)
             {
                 EditRecordView(
                     actionOnOK:
@@ -51,15 +75,29 @@ struct ContentView: View
                         dataStore.AddRecord(record: record)
                         record = Record()
                         dataStore.Save()
-                        showEditRecordView.toggle()
+                        currentView = CurrentView.Data
                     },
                     actionOnCancel:
                     {
-                        showEditRecordView.toggle()
+                        currentView = CurrentView.Data
                     },
                     record: $record,
                     dateEditable: true)
                 .navigationBarHidden(true)
+            }
+            else
+            {
+                SettingsView(
+                    actionOnOK:
+                    {
+                        dataStore.Load()
+                        currentView = CurrentView.Data
+                    },
+                    actionOnCancel:
+                    {
+                        currentView = CurrentView.Data
+                    })
+                    .navigationBarHidden(true)
             }
         }
     }

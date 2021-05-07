@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class DataStore: ObservableObject, ISerialiser, Codable
 {
@@ -44,25 +45,25 @@ final class DataStore: ObservableObject, ISerialiser, Codable
         var records = Array<Record>()
        
         var record = Record()
-        record.collectionDate = date
-        record.name = "Amanita spissa"
+        record.date = date
+        record.species = "Amanita spissa"
         records.append(record)
         
         record = Record()
-        record.collectionDate = date
-        record.name = "Amanita muscaria"
+        record.date = date
+        record.species = "Amanita muscaria"
         record.location = "Wisley"
         records.append(record)
         
         record = Record()
-        record.collectionDate = date
-        record.name = "Ganoderma australe"
+        record.date = date
+        record.species = "Ganoderma australe"
         record.location = "Wisley"
         records.append(record)
         
         record = Record()
-        record.collectionDate = date
-        record.name = "Boletus edulis"
+        record.date = date
+        record.species = "Boletus edulis"
         record.location = "Stoner Park"
         records.append(record)
         
@@ -79,14 +80,14 @@ final class DataStore: ObservableObject, ISerialiser, Codable
         records = Array<Record>()
      
         record = Record()
-        record.collectionDate = date
-        record.name = "Peniophora quercina"
+        record.date = date
+        record.species = "Peniophora quercina"
         record.location = "Four Marks"
         records.append(record)
         
         record = Record()
-        record.collectionDate = date
-        record.name = "Stereum hirsutum"
+        record.date = date
+        record.species = "Stereum hirsutum"
         record.location = "Medstead"
         records.append(record)
 
@@ -104,7 +105,7 @@ final class DataStore: ObservableObject, ISerialiser, Codable
         let calendar = Calendar.current
         var components = calendar.dateComponents(
             [.year,.month,.day],
-            from: record.collectionDate)
+            from: record.date)
         let year = components.year
         let month = components.month
         let day = components.day
@@ -128,7 +129,7 @@ final class DataStore: ObservableObject, ISerialiser, Codable
             }
             else
             {
-                if (self.collections[i].date < record.collectionDate)
+                if (self.collections[i].date < record.date)
                 {
                     index = i + 1
                 }
@@ -138,10 +139,29 @@ final class DataStore: ObservableObject, ISerialiser, Codable
         {
             let recordStore = RecordStore(
                 records: [Record](),
-                date: record.collectionDate,
-                dateString: dateFormat.FormatDateAsString(date: record.collectionDate))
+                date: record.date,
+                dateString: dateFormat.FormatDateAsString(date: record.date))
             self.collections.insert(recordStore, at: index)
             self.collections[index].records.append(record)
+        }
+    }
+    
+    func SetLongLat(id: UUID, date: Date, longitude: CLLocationDegrees, latitude: CLLocationDegrees) -> Void
+    {
+        for i in 0..<collections.count
+        {
+            if (collections[i].date == date)
+            {
+                for j in 0..<collections[i].records.count
+                {
+                    if (collections[i].records[j].id == id)
+                    {
+                        collections[i].records[j].location = String(longitude) + "," + String(latitude)
+                        break;
+                    }
+                }
+                break;
+            }
         }
     }
     

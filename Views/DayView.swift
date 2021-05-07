@@ -23,6 +23,7 @@ struct DayView: View
     func Delete(at offsets: IndexSet)
     {
         recordStore.records.remove(atOffsets: offsets)
+        iSerialiser.Save()
     }
 
     var body: some View
@@ -45,7 +46,7 @@ struct DayView: View
                             {
                                 HStack
                                 {
-                                    Text(recordStore.records[i].name + ", " +
+                                    Text(recordStore.records[i].species + ", " +
                                         recordStore.records[i].location)
                                 }
                             }
@@ -59,7 +60,8 @@ struct DayView: View
                 .navigationBarItems(trailing: Button("Add")
                 {
                     record = Record()
-                    record.collectionDate = recordStore.date
+                    record.date = recordStore.date
+                    record.collector = Settings.defaultCollector
                     showEditRecordView = true
                 })
             }
@@ -69,7 +71,6 @@ struct DayView: View
                     actionOnOK:
                     {
                         recordStore.records.append(record)
-                        record = Record()
                         iSerialiser.Save()
                         showEditRecordView.toggle()
                     },

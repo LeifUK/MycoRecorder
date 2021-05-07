@@ -56,14 +56,8 @@ struct ContentView: View
                     },
                     trailing: Button("Add")
                     {
-                        locationManager.RequestLocation(locationCallback:
-                        {
-                            latitude,longitude in
-                            do
-                            {
-                                record.location = String(latitude) + ", " + String(longitude)
-                            }
-                        })
+                        record = Record()
+                        record.collector = Settings.defaultCollector
                         currentView = CurrentView.AddRecord
                     })
             }
@@ -73,7 +67,6 @@ struct ContentView: View
                     actionOnOK:
                     {
                         dataStore.AddRecord(record: record)
-                        record = Record()
                         dataStore.Save()
                         currentView = CurrentView.Data
                     },

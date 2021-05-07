@@ -29,27 +29,85 @@ struct RecordView: View
             {
                 Group
                 {
-                    RecordDateItem(label: "Date", date: $record.collectionDate, readOnly: readOnly)
-                    RecordTextItem(label: "Name", text: $record.name, editorHeight: defaultEditorHeight)
+                    RecordDateItem(label: "Date", date: $record.date, readOnly: readOnly)
+                    RecordTextItem(label: "Species", text: $record.species, editorHeight: defaultEditorHeight)
                     RecordTextItem(label: "Collector", text: $record.collector, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Identifier", text: $record.identifier, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Confirmer", text: $record.confirmer, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Latitude, Longitude",text: $record.coordinates, editorHeight: defaultEditorHeight)
+                    if (Settings.showIdentifier)
+                    {
+                        RecordTextItem(label: "Identifier", text: $record.identifier, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showConfirmer)
+                    {
+                        RecordTextItem(label: "Confirmer", text: $record.confirmer, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showGridReference)
+                    {
+                        RecordTextItem(label: "Grid Reference",text: $record.gridref, editorHeight: defaultEditorHeight)
+                    }
                     RecordTextItem(label: "Location", text: $record.location, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Cap", text: $record.cap, editorHeight: 100)
-                    RecordTextItem(label: "Gills", text: $record.gills, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Pores", text: $record.pores, editorHeight: defaultEditorHeight)
+                    if (Settings.showViceCounty)
+                    {
+                        RecordTextItem(label: "Vice County", text: $record.viceCounty, editorHeight: 100)
+                    }
+                    if (Settings.showCap)
+                    {
+                        RecordTextItem(label: "Cap", text: $record.cap, editorHeight: 100)
+                    }
                 }
                 Group
                 {
-                    RecordTextItem(label: "Spines", text: $record.spines, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Fruiting Body", text: $record.fruitingBody, editorHeight: 200)
-                    RecordTextItem(label: "Substrate", text: $record.substrate, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Associations", text: $record.associations, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Stem", text: $record.stem, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Smell", text: $record.smell, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Taste", text: $record.taste, editorHeight: defaultEditorHeight)
-                    RecordTextItem(label: "Flesh", text: $record.flesh, editorHeight: defaultEditorHeight)
+                    if (Settings.showGills)
+                    {
+                        RecordTextItem(label: "Gills", text: $record.gills, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showPores)
+                    {
+                        RecordTextItem(label: "Pores", text: $record.pores, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showSpines)
+                    {
+                        RecordTextItem(label: "Spines", text: $record.spines, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showHymenium)
+                    {
+                        RecordTextItem(label: "Hymenium", text: $record.hymenium, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showStem)
+                    {
+                        RecordTextItem(label: "Stem", text: $record.stem, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showFruitingBody)
+                    {
+                        RecordTextItem(label: "Fruiting Body", text: $record.fruitingBody, editorHeight: 200)
+                    }
+                    if (Settings.showMicroscopy)
+                    {
+                        RecordTextItem(label: "Microscopy", text: $record.microscopy, editorHeight: 200)
+                    }
+                    if (Settings.showSubstrate)
+                    {
+                        RecordTextItem(label: "Substrate", text: $record.substrate, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showAssociatedOrganisms)
+                    {
+                        RecordTextItem(label: "Associated Organisms", text: $record.assocOrgs, editorHeight: defaultEditorHeight)
+                    }
+                }
+                Group
+                {
+                    if (Settings.showSmell)
+                    {
+                        RecordTextItem(label: "Smell", text: $record.smell, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showTaste)
+                    {
+                        RecordTextItem(label: "Taste", text: $record.taste, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showFlesh)
+                    {
+                        RecordTextItem(label: "Flesh", text: $record.flesh, editorHeight: defaultEditorHeight)
+                    }
+                    RecordTextItem(label: "Comments", text: $record.comments, editorHeight: defaultEditorHeight)
                 }
             }
         }

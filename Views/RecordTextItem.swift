@@ -19,7 +19,7 @@ struct RecordTextItem: View
         {
             Text(label)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 10)
+                .padding(.leading, 6)
                 .padding(.top, 4)
                 .padding(.bottom, 4)
 

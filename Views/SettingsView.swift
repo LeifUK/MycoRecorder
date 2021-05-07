@@ -115,7 +115,6 @@ struct SettingsView: View
                 .padding(.top, 0)
                 .padding(.bottom, 0)
 
-
                 ScrollView()
                 {
                     SettingsTextItem(label: "Data File Name", text: $dataFile)
@@ -124,9 +123,10 @@ struct SettingsView: View
                         .padding(.top, 0)
                         .padding(.bottom, 00)
                     SettingsTextItem(label: "Default Collector", text: $defaultCollector)
-                        .padding(10)
-                        .padding(.trailing, 0)
-                     
+                        .padding(.leading, 10)
+                        .padding(.trailing, 10)
+                        .padding(.top, 10)
+                        .padding(.bottom, 0)
                     Group()
                     {
                         VStack()
@@ -208,21 +208,27 @@ struct SettingsView: View
         {
             VStack()
             {
-                Spacer()
+                HStack()
+                {
+                    Button(
+                        action:
+                        {
+                            currentView = CurrentView.Settings
+                        },
+                        label:
+                        {
+                            Text("Done").padding().font(.custom("Arial", size: 18))
+                        })
+                    Spacer()
+                }
                 Text(warningMessage)
+                    .padding().font(.custom("Arial", size: 18))
                     .foregroundColor(Color.red)
-                Button(
-                    action:
-                    {
-                        currentView = CurrentView.Settings
-                    },
-                    label:
-                    {
-                        Text("OK")
-                    })
+                    .padding(.top, 20)
+                    .padding(10)
                 Spacer()
-            }.font(.custom("Arial", size: 18))
-
+            }
+            .background(Color(red: 0.9, green: 0.9, blue: 0.9))
         }
     }
 }

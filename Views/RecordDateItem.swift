@@ -39,7 +39,6 @@ struct RecordDateItem: View
                 .cornerRadius(5, corners: [.bottomLeft, .bottomRight])
                 .offset(y: -8)
                 .padding(.bottom, -10)
-                //.accentColor(Color.black)
                 .disabled(readOnly)
          }
      }

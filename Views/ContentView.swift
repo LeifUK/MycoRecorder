@@ -56,6 +56,8 @@ struct ContentView: View
                     trailing: Button("Add")
                     {
                         record = Record()
+                        record.latlong = "Waiting for data ..."
+                        record.location = "Waiting for data ..."
                         record.collector = Settings.defaultCollector
                         locationManager.RequestLocation(
                             latLongCallback:

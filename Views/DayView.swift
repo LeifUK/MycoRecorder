@@ -61,6 +61,8 @@ struct DayView: View
                 .navigationBarItems(trailing: Button("Add")
                 {
                     record = Record()
+                    record.latlong = "Waiting for data ..."
+                    record.location = "Waiting for data ..."
                     record.date = recordStore.date
                     record.collector = Settings.defaultCollector
                     locationManager.RequestLocation(

@@ -120,6 +120,7 @@ struct RecordView: View
         .background(Color(red: 0.7, green: 0.7, blue: 0.7))
         .onDisappear
         {
+            record.dateString = DateFormat().FormatDateAsString(date: record.date)
             onDisappear()
         }
     }

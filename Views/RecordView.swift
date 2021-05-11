@@ -40,14 +40,18 @@ struct RecordView: View
                     {
                         RecordTextItem(label: "Confirmer", text: $record.confirmer, editorHeight: defaultEditorHeight)
                     }
-                    if (Settings.showGridReference)
-                    {
-                        RecordTextItem(label: "Grid Reference",text: $record.gridref, editorHeight: defaultEditorHeight)
-                    }
                     RecordTextItem(label: "Location", text: $record.location, editorHeight: defaultEditorHeight)
                     if (Settings.showViceCounty)
                     {
                         RecordTextItem(label: "Vice County", text: $record.viceCounty, editorHeight: 100)
+                    }
+                    if (Settings.showLatLong)
+                    {
+                        RecordTextItem(label: "Latitude, Longitude",text: $record.latlong, editorHeight: defaultEditorHeight)
+                    }
+                    if (Settings.showGridRef)
+                    {
+                        RecordTextItem(label: "Grid Reference",text: $record.gridref, editorHeight: defaultEditorHeight)
                     }
                     if (Settings.showCap)
                     {

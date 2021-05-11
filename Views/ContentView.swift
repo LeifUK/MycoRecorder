@@ -20,7 +20,6 @@ struct ContentView: View
     @State var currentView = CurrentView.Data
     @State var dataFile = "MycoRecorder"
     @State var defaultCollector = "Joe Bloggs"
-    
     var locationManager = LocationManager()
     
     var body: some View
@@ -58,6 +57,17 @@ struct ContentView: View
                     {
                         record = Record()
                         record.collector = Settings.defaultCollector
+                        locationManager.RequestLocation(
+                            latLongCallback:
+                            {
+                               latlong in
+                               record.latlong = latlong
+                            },
+                            locationCallback:
+                            {
+                                location in
+                                record.location = location
+                            })
                         currentView = CurrentView.AddRecord
                     })
             }

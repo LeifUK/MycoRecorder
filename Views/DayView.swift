@@ -13,13 +13,14 @@ struct DayView: View
     @ObservedObject var recordStore: RecordStore
     @State var showEditRecordView = false
     @State var record: Record = Record()
+    var locationManager = LocationManager()
     
     init(iSerialiser: ISerialiser, recordStore: RecordStore)
     {
         self.iSerialiser = iSerialiser
         self.recordStore = recordStore
     }
-    
+
     func Delete(at offsets: IndexSet)
     {
         recordStore.records.remove(atOffsets: offsets)
@@ -62,6 +63,17 @@ struct DayView: View
                     record = Record()
                     record.date = recordStore.date
                     record.collector = Settings.defaultCollector
+                    locationManager.RequestLocation(
+                        latLongCallback:
+                        {
+                           latlong in
+                           record.latlong = latlong
+                        },
+                        locationCallback:
+                        {
+                            location in
+                            record.location = location
+                        })
                     showEditRecordView = true
                 })
             }

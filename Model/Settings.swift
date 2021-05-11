@@ -74,15 +74,27 @@ final class Settings
         }
     }
     
-    static var showGridReference: Bool
+    static var showLatLong: Bool
     {
         get
         {
-            return ReadBoolValue(key: "ShowGridReference")
+            return ReadBoolValue(key: "ShowLatLong")
         }
         set
         {
-            UserDefaults.standard.set(newValue, forKey: "ShowGridReference")
+            UserDefaults.standard.set(newValue, forKey: "ShowLatLong")
+        }
+    }
+    
+    static var showGridRef: Bool
+    {
+        get
+        {
+            return ReadBoolValue(key: "ShowGridRef")
+        }
+        set
+        {
+            UserDefaults.standard.set(newValue, forKey: "ShowGridRef")
         }
     }
 

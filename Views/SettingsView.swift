@@ -33,7 +33,8 @@ struct SettingsView: View
     @State var warningMessage = ""
     @State var showIdentifier: Bool = Settings.showIdentifier
     @State var showConfirmer: Bool = Settings.showConfirmer
-    @State var showGridReference: Bool = Settings.showGridReference
+    @State var showLatLong: Bool = Settings.showLatLong
+    @State var showGridRef: Bool = Settings.showGridRef
     @State var showViceCounty: Bool = Settings.showViceCounty
     @State var showCap: Bool = Settings.showCap
     @State var showGills: Bool = Settings.showGills
@@ -67,7 +68,8 @@ struct SettingsView: View
                                 Settings.showIdentifier = self.showIdentifier
                                 Settings.showConfirmer = self.showConfirmer
                                 Settings.showViceCounty = self.showViceCounty
-                                Settings.showGridReference = self.showGridReference
+                                Settings.showLatLong = self.showLatLong
+                                Settings.showGridRef = self.showGridRef
                                 Settings.showCap = self.showCap
                                 Settings.showGills = self.showGills
                                 Settings.showPores = self.showPores
@@ -152,7 +154,9 @@ struct SettingsView: View
                                     LabelTickView(label: "Location")
                                     Toggle(isOn: $showViceCounty){ Text("Vice County") }
                                             .toggleStyle(CheckboxToggleStyle())
-                                    Toggle(isOn: $showGridReference){ Text("Grid Reference") }
+                                    Toggle(isOn: $showLatLong){ Text("Latitude, Longitude") }
+                                        .toggleStyle(CheckboxToggleStyle())
+                                    Toggle(isOn: $showGridRef){ Text("Grid Reference") }
                                         .toggleStyle(CheckboxToggleStyle())
                                     Toggle(isOn: $showCap){ Text("Cap") }
                                         .toggleStyle(CheckboxToggleStyle())

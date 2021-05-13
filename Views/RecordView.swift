@@ -27,7 +27,7 @@ struct RecordView: View
         {
             VStack
             {
-                Group
+                Group()
                 {
                     RecordDateItem(label: "Date", date: $record.date, readOnly: readOnly)
                     RecordTextItem(label: "Species", text: $record.species, editorHeight: defaultEditorHeight)
@@ -43,7 +43,10 @@ struct RecordView: View
                     RecordTextItem(label: "Location", text: $record.location, editorHeight: defaultEditorHeight)
                     if (Settings.showViceCounty)
                     {
-                        RecordTextItem(label: "Vice County", text: $record.viceCounty, editorHeight: 100)
+                        RecordPickerItem(
+                            label: "Vice County",
+                            viceCounty: $record.viceCounty,
+                            viceCountyId: $record.viceCountyId)
                     }
                     if (Settings.showLatLong)
                     {
@@ -58,7 +61,7 @@ struct RecordView: View
                         RecordTextItem(label: "Cap", text: $record.cap, editorHeight: 100)
                     }
                 }
-                Group
+                Group()
                 {
                     if (Settings.showGills)
                     {
@@ -82,7 +85,7 @@ struct RecordView: View
                     }
                     if (Settings.showFruitingBody)
                     {
-                        RecordTextItem(label: "Fruiting Body", text: $record.fruitingBody, editorHeight: 200)
+                        RecordTextItem(label: "Fruiting Body", text: $record.fruitingBody, editorHeight: 300)
                     }
                     if (Settings.showMicroscopy)
                     {
@@ -97,7 +100,7 @@ struct RecordView: View
                         RecordTextItem(label: "Associated Organisms", text: $record.assocOrgs, editorHeight: defaultEditorHeight)
                     }
                 }
-                Group
+                Group()
                 {
                     if (Settings.showSmell)
                     {

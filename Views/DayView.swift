@@ -48,7 +48,7 @@ struct DayView: View
                                 HStack
                                 {
                                     Text(recordStore.records[i].species + ", " +
-                                        recordStore.records[i].location)
+                                            recordStore.records[i].location).lineLimit(1)
                                 }
                             }
                             .padding(0)
@@ -65,6 +65,7 @@ struct DayView: View
                     record.location = "Waiting for data ..."
                     record.date = recordStore.date
                     record.collector = Settings.defaultCollector
+                    record.viceCounty = ViceCounties[0] ?? ""
                     locationManager.RequestLocation(
                         latLongCallback:
                         {

@@ -59,6 +59,7 @@ struct ContentView: View
                         record.latlong = "Waiting for data ..."
                         record.location = "Waiting for data ..."
                         record.collector = Settings.defaultCollector
+                        record.viceCounty = ViceCounties[0] ?? ""
                         locationManager.RequestLocation(
                             latLongCallback:
                             {

@@ -8,7 +8,8 @@
 import Foundation
 
 let ViceCounties = [
-    1: "West Cornwall",
+    0:"Not specified",
+    1:"West Cornwall",
     2:"East Cornwall",
     3:"South Devon",
     4:"North Devon",

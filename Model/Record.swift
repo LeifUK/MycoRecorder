@@ -18,6 +18,7 @@ struct Record: Identifiable, Equatable, Codable
     var confirmer: String = ""
     var location: String = ""
     var viceCounty: String = ""
+    var viceCountyId: Int = 0
     var latlong: String = ""
     var gridref: String = ""
     var cap: String = ""

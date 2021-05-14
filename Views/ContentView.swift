@@ -19,8 +19,6 @@ struct ContentView: View
     @State var showEditRecordView = false
     @State var currentView = CurrentView.Data
     @State var dataFile = "MycoRecorder"
-    @State var defaultCollector = "Joe Bloggs"
-    var locationManager = LocationManager()
     
     var body: some View
     {
@@ -53,26 +51,14 @@ struct ContentView: View
                     {
                         currentView = CurrentView.Settings
                     },
-                    trailing: Button("Add")
-                    {
-                        record = Record()
-                        record.latlong = "Waiting for data ..."
-                        record.location = "Waiting for data ..."
-                        record.collector = Settings.defaultCollector
-                        record.viceCounty = ViceCounties[0] ?? ""
-                        locationManager.RequestLocation(
-                            latLongCallback:
-                            {
-                               latlong in
-                               record.latlong = latlong
-                            },
-                            locationCallback:
-                            {
-                                location in
-                                record.location = location
-                            })
-                        currentView = CurrentView.AddRecord
-                    })
+                    trailing:
+                        AddRecordButton(
+                            record: $record,
+                            date: Date(),
+                            onClick:
+                                {
+                                    currentView = CurrentView.AddRecord
+                                }))
             }
             else if (currentView == CurrentView.AddRecord)
             {
@@ -89,7 +75,11 @@ struct ContentView: View
                     },
                     record: $record,
                     dateEditable: true)
-                .navigationBarHidden(true)
+                    .onAppear()
+                    {
+                        record = Record()
+                    }
+                    .navigationBarHidden(true)
             }
             else
             {

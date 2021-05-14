@@ -119,7 +119,7 @@ struct SettingsView: View
 
                 ScrollView()
                 {
-                    SettingsTextItem(label: "Data File Name", text: $dataFile)
+                    SettingsDataFileItem(label: "Data File Name", text: $dataFile)
                         .padding(.leading, 10)
                         .padding(.trailing, 10)
                         .padding(.top, 0)

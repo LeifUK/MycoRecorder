@@ -1,13 +1,13 @@
 //
-//  SettingsTextItem.swift
+//  SettingsDataFileItem.swift
 //  MycoRecorder
 //
-//  Created by Leif Goodwin on 03/05/2021.
+//  Created by Leif Goodwin on 14/05/2021.
 //
 
 import SwiftUI
 
-struct SettingsTextItem: View
+struct SettingsDataFileItem: View
 {
     var label: String
     @Binding var text: String
@@ -16,11 +16,20 @@ struct SettingsTextItem: View
     {
         VStack
         {
-            Text(label)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 16)
-                .padding(.trailing, 10)
-                .padding(.top, 10)
+            HStack()
+            {
+                Text(label)
+                Spacer()
+                Button("Browse")
+                {
+                    
+                }
+                .foregroundColor(Color.blue)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 16)
+            .padding(.trailing, 10)
+            .padding(.top, 10)
 
             TextField("Dummy", text: $text)
                 .padding(0)
@@ -34,13 +43,15 @@ struct SettingsTextItem: View
         .font(.custom("Arial", size: 18))
         .background(Color(red: 0.95, green: 0.95, blue: 0.95))
         .cornerRadius(5, corners: [.allCorners])
-     }}
+     }
+}
 
-struct SettingsTextItem_Previews: PreviewProvider
+struct SettingsDataFileItem_Previews: PreviewProvider
 {
     @State static var test: String = "Test"
     static var previews: some View
     {
-        SettingsTextItem(label: "demo", text: $test)
+        SettingsDataFileItem(label: "demo", text: $test)
     }
 }
+

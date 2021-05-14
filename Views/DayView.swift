@@ -13,7 +13,6 @@ struct DayView: View
     @ObservedObject var recordStore: RecordStore
     @State var showEditRecordView = false
     @State var record: Record = Record()
-    var locationManager = LocationManager()
     
     init(iSerialiser: ISerialiser, recordStore: RecordStore)
     {
@@ -58,27 +57,14 @@ struct DayView: View
                 .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
                 .navigationBarHidden(false)
                 .navigationBarTitle(recordStore.dateString)
-                .navigationBarItems(trailing: Button("Add")
-                {
-                    record = Record()
-                    record.latlong = "Waiting for data ..."
-                    record.location = "Waiting for data ..."
-                    record.date = recordStore.date
-                    record.collector = Settings.defaultCollector
-                    record.viceCounty = ViceCounties[0] ?? ""
-                    locationManager.RequestLocation(
-                        latLongCallback:
-                        {
-                           latlong in
-                           record.latlong = latlong
-                        },
-                        locationCallback:
-                        {
-                            location in
-                            record.location = location
-                        })
-                    showEditRecordView = true
-                })
+                .navigationBarItems(trailing:
+                    AddRecordButton(
+                        record: $record,
+                        date: recordStore.date,
+                        onClick:
+                            {
+                                showEditRecordView = true                                
+                            }))
             }
             else
             {
@@ -96,6 +82,10 @@ struct DayView: View
                     record: $record,
                     dateEditable: false)
                 .navigationBarHidden(true)
+                .onAppear()
+                {
+                    record = Record()
+                }
             }
         }
     }
